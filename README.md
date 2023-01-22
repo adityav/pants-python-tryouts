@@ -1,3 +1,24 @@
+# pants python tryout
+
+Repo to tryout pants for data engineering projects
+
+## Current Issue
+
+### Unable to run a spark job
+
+on running:
+```
+./pants run helloworld/sparkjob/hellospark.py
+```
+, getting error:
+
+`ModuleNotFoundError: No module named 'pandas'`
+
+`requirements.txt` contains dependency `pyspark[pandas_on_spark]==3.3.1` which has `pandas` and `pyarrow` as extra dependencies.
+
+---
+# templated Readme below
+
 # example-python
 An example repository to demonstrate Python support in Pants.
 
