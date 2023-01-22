@@ -10,6 +10,8 @@
 //   ],
 //   "generated_with_requirements": [
 //     "ansicolors==1.1.8",
+//     "pandas==1.5.1",
+//     "pyarrow==6.0.1",
 //     "pyspark[pandas_on_spark]==3.3.1",
 //     "pytest==7.1.3",
 //     "setuptools<57,>=56.2.0",
@@ -168,33 +170,33 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "7a0a56cef15fd1586726dace5616db75ebcfec9179a3a55e78f72c5639fa2a23",
-              "url": "https://files.pythonhosted.org/packages/49/e2/79e46612dc25ebc7603dc11c560baa7266c90f9e48537ecf1a02a0dd6bff/pandas-1.5.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+              "hash": "32e3d9f65606b3f6e76555bfd1d0b68d94aff0929d82010b791b6254bf5a4b96",
+              "url": "https://files.pythonhosted.org/packages/e9/aa/1ba5c0835aa83af896cdb61df439335f39ca59392aff5fd1a06a152a7aae/pandas-1.5.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "c3ac844a0fe00bfaeb2c9b51ab1424e5c8744f89860b138434a363b1f620f354",
-              "url": "https://files.pythonhosted.org/packages/27/c7/35b81ce5f680f2dac55eac14d103245cd8cf656ae4a2ff3be2e69fd1d330/pandas-1.5.3-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+              "hash": "f340331a3f411910adfb4bbe46c2ed5872d9e473a783d7f14ecf49bc0869c594",
+              "url": "https://files.pythonhosted.org/packages/68/49/7244ad35598bd612a4b68a86030d9ed210ff9a9f9def2e67282cce128512/pandas-1.5.1-cp310-cp310-macosx_11_0_arm64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "972d8a45395f2a2d26733eb8d0f629b2f90bebe8e8eddbb8829b180c09639572",
-              "url": "https://files.pythonhosted.org/packages/5f/34/b7858bb7d6d6bf4d9df1dde777a11fcf3ff370e1d1b3956e3d0fcca8322c/pandas-1.5.3-cp310-cp310-macosx_10_9_x86_64.whl"
+              "hash": "d8c709f4700573deb2036d240d140934df7e852520f4a584b2a8d5443b71f54d",
+              "url": "https://files.pythonhosted.org/packages/88/ca/d8f52ce9faa3c48f7c5dd2fd7bfb036263d77eb61b1c616679faa25e5f88/pandas-1.5.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "74a3fd7e5a7ec052f183273dc7b0acd3a863edf7520f5d3a1765c04ffdb3b0b1",
-              "url": "https://files.pythonhosted.org/packages/74/ee/146cab1ff6d575b54ace8a6a5994048380dc94879b0125b25e62edcb9e52/pandas-1.5.3.tar.gz"
+              "hash": "0a78e05ec09731c5b3bd7a9805927ea631fe6f6cb06f0e7c63191a9a778d52b4",
+              "url": "https://files.pythonhosted.org/packages/8f/f1/0fea6a6ad6e88f603443a0e9f225f0feafeba4ec899f09846ea7ad5c06e7/pandas-1.5.1-cp310-cp310-macosx_10_9_universal2.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "3749077d86e3a2f0ed51367f30bf5b82e131cc0f14260c4d3e499186fccc4406",
-              "url": "https://files.pythonhosted.org/packages/a9/cd/34f6b0780301be81be804d7aa71d571457369e6131e2b330af2b0fed1aad/pandas-1.5.3-cp310-cp310-macosx_10_9_universal2.whl"
+              "hash": "5b0c970e2215572197b42f1cff58a908d734503ea54b326412c70d4692256391",
+              "url": "https://files.pythonhosted.org/packages/97/04/e2f55bb7fea442e27a002df165d05e0fcd4c282a3ca0da9f717f021515e8/pandas-1.5.1-cp310-cp310-macosx_10_9_x86_64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "50869a35cbb0f2e0cd5ec04b191e7b12ed688874bd05dd777c19b28cbea90996",
-              "url": "https://files.pythonhosted.org/packages/b8/6c/005bd604994f7cbede4d7bf030614ef49a2213f76bc3d738ecf5b0dcc810/pandas-1.5.3-cp310-cp310-macosx_11_0_arm64.whl"
+              "hash": "249cec5f2a5b22096440bd85c33106b6102e0672204abd2d5c014106459804ee",
+              "url": "https://files.pythonhosted.org/packages/d7/4e/bc3163c2f0b2f0728c398cad15e082efaa27e40fa579a0523e98caf10fdf/pandas-1.5.1.tar.gz"
             }
           ],
           "project_name": "pandas",
@@ -202,14 +204,13 @@
             "hypothesis>=5.5.3; extra == \"test\"",
             "numpy>=1.20.3; python_version < \"3.10\"",
             "numpy>=1.21.0; python_version >= \"3.10\"",
-            "numpy>=1.23.2; python_version >= \"3.11\"",
             "pytest-xdist>=1.31; extra == \"test\"",
             "pytest>=6.0; extra == \"test\"",
             "python-dateutil>=2.8.1",
             "pytz>=2020.1"
           ],
           "requires_python": ">=3.8",
-          "version": "1.5.3"
+          "version": "1.5.1"
         },
         {
           "artifacts": [
@@ -275,36 +276,51 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "ba71e6fc348c92477586424566110d332f60d9a35cb85278f42e3473bc1373da",
-              "url": "https://files.pythonhosted.org/packages/db/9f/ef33d4f60089bbe32a5620e599cb485cfd9306bd1663bc603354759c28eb/pyarrow-10.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+              "hash": "1f4f3db1da51db4cfbafab3066a01b01578884206dced9f505da950d9ed4402d",
+              "url": "https://files.pythonhosted.org/packages/1e/02/e565e5737b61a6638bba37e1f1cbce92a53998009f9aafe402fbde3643de/pyarrow-6.0.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "1a14f57a5f472ce8234f2964cd5184cccaa8df7e04568c64edc33b23eb285dd5",
-              "url": "https://files.pythonhosted.org/packages/11/71/dd884e86aa92b2d602ee2064a485106ce5b447f8cae644f1a6f6a2e72016/pyarrow-10.0.1.tar.gz"
+              "hash": "c80d2436294a07f9cc54852aa1cef034b6f9c97d29235c4bd53bbf52e24f1ebf",
+              "url": "https://files.pythonhosted.org/packages/0f/8a/31f188ef05981ff52c55fcb690edbe2c2f17ea0aedd4b46a6bf3b83e2745/pyarrow-6.0.1-cp310-cp310-macosx_10_13_universal2.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "6f7a7dbe2f7f65ac1d0bd3163f756deb478a9e9afc2269557ed75b1b25ab3610",
-              "url": "https://files.pythonhosted.org/packages/26/02/62c918edc87e91bf07fd003f7ed8468d45130471b415754b27cf4db95896/pyarrow-10.0.1-cp310-cp310-macosx_11_0_arm64.whl"
+              "hash": "423990d56cd8f12283b67367d48e142739b789085185018eb03d05087c3c8d43",
+              "url": "https://files.pythonhosted.org/packages/38/c6/97a4133eea642155e7a73cb946d889cadc461a1e6b93f5627af9fdd7b3f3/pyarrow-6.0.1.tar.gz"
             },
             {
               "algorithm": "sha256",
-              "hash": "e00174764a8b4e9d8d5909b6d19ee0c217a6cf0232c5682e31fdfbd5a9f0ae52",
-              "url": "https://files.pythonhosted.org/packages/da/8a/9fa72ef41bd47816f11e6c3c5b68c0a913d2005a3e1aa327dfaa936debb9/pyarrow-10.0.1-cp310-cp310-macosx_10_14_x86_64.whl"
+              "hash": "d29605727865177918e806d855fd8404b6242bf1e56ade0a0023cd4fe5f7f841",
+              "url": "https://files.pythonhosted.org/packages/45/f1/bf85772f95addb87d1e8fe6b8ff5808499048c4c6411ac1cd2fbf6881b99/pyarrow-6.0.1-cp310-cp310-macosx_11_0_arm64.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "cb627673cb98708ef00864e2e243f51ba7b4c1b9f07a1d821f98043eccd3f585",
-              "url": "https://files.pythonhosted.org/packages/fd/3e/9f538cc3e048ae2de171ae4bb326c5482ba2bd63978c56bd29110e65ba09/pyarrow-10.0.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+              "hash": "b63b54dd0bada05fff76c15b233f9322de0e6947071b7871ec45024e16045aeb",
+              "url": "https://files.pythonhosted.org/packages/74/44/b2c222a44545c5733547a4a6a465aca6666983cdb0df858a109c78e32b4f/pyarrow-6.0.1-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "9e90e75cb11e61ffeffb374f1db7c4788f1df0cb269596bf86c473155294958d",
+              "url": "https://files.pythonhosted.org/packages/a0/04/9ec9b89ea5561c42d239f848b1c12c8c0379c6b2212617b69560b39d09f4/pyarrow-6.0.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "c3a727642c1283dcb44728f0d0a00f8864b171e31c835f4b8def07e3fa8f5c73",
+              "url": "https://files.pythonhosted.org/packages/a6/f9/1a8a1ce19dc0a2d0c22bf6f4781e056037b4bf5aec8966f8ce7d23a5f218/pyarrow-6.0.1-cp310-cp310-macosx_10_9_x86_64.whl"
+            },
+            {
+              "algorithm": "sha256",
+              "hash": "f150b4f222d0ba397388908725692232345adaa8e58ad543ca00f03c7234ae7b",
+              "url": "https://files.pythonhosted.org/packages/ac/d5/8f5cca9c43860f5ba2ce77841764550a1135fa48823699cacb480f3d462d/pyarrow-6.0.1-cp310-cp310-macosx_10_13_x86_64.whl"
             }
           ],
           "project_name": "pyarrow",
           "requires_dists": [
             "numpy>=1.16.6"
           ],
-          "requires_python": ">=3.7",
-          "version": "10.0.1"
+          "requires_python": ">=3.6",
+          "version": "6.0.1"
         },
         {
           "artifacts": [
@@ -508,6 +524,8 @@
   "prefer_older_binary": false,
   "requirements": [
     "ansicolors==1.1.8",
+    "pandas==1.5.1",
+    "pyarrow==6.0.1",
     "pyspark[pandas_on_spark]==3.3.1",
     "pytest==7.1.3",
     "setuptools<57,>=56.2.0",
