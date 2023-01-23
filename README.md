@@ -96,6 +96,7 @@ From him, on slack:
     os.environ['PYSPARK_PYTHON'] = sys.executable
     os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 ```
+I have no idea why this works, but it does for both ./pants run and ./pants test
 
 ---
 # templated Readme below
