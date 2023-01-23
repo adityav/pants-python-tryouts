@@ -56,6 +56,9 @@ enable_resolves = true
 
 resolves = { python-default = "python-default.lock"}
 
+[python.resolves_to_constraints_file]
+python-default = "constraints-3.10.txt"
+
 [python-bootstrap]
 # We search for interpreters both on the $PATH and in the `$(pyenv root)/versions` folder.
 #  If you're using macOS, you may want to leave off the <PATH> entry to avoid using the

@@ -4,6 +4,65 @@ Repo to tryout pants for data engineering projects
 
 ## Current Issue
 
+Using a constraints file causes `ModuleNotFoundError: No module named 'pyarrow'` when running tests.
+
+Without constraints file, hellospark_test works correctly.
+```
+➜ ./pants test helloworld/sparkjob/hellospark_test.py
+19:14:59.81 [INFO] Completed: Building 4 requirements for requirements.pex from the python-default.lock resolve: pandas==1.5.1, pyarrow==6.0.1, pyspark[sql]==3.3.1, pytest==6.2.5
+19:15:01.36 [INFO] Completed: Building pytest_runner.pex
+19:15:11.84 [INFO] Completed: Run Pytest - helloworld/sparkjob/hellospark_test.py:tests succeeded.
+
+✓ helloworld/sparkjob/hellospark_test.py:tests succeeded in 10.35s.
+```
+On adding a constraints file in `pants.toml`:
+
+```
+[python.resolves_to_constraints_file]
+python-default = "constraints-3.10.txt"
+```
+
+Getting error:
+
+```
+➜ ./pants generate-lockfiles                          
+19:17:41.08 [INFO] Initializing scheduler...
+19:17:41.40 [INFO] Scheduler initialized.
+19:18:01.38 [INFO] Completed: Generate lockfile for python-default
+19:18:01.39 [INFO] Wrote lockfile for the resolve `python-default` to python-default.lock
+./pants test helloworld/sparkjob/hellospark_test.py
+19:19:25.82 [ERROR] Completed: Run Pytest - helloworld/sparkjob/hellospark_test.py:tests failed (exit code 2).
+============================= test session starts ==============================
+platform darwin -- Python 3.10.9, pytest-7.0.1, pluggy-1.0.0
+rootdir: /private/var/folders/0t/dmh8ynt13pbc2y2stvb0by6c0000gn/T/pants-sandbox-aA4jsU
+plugins: xdist-2.5.0, forked-1.4.0, cov-3.0.0
+collected 0 items / 1 error
+
+==================================== ERRORS ====================================
+___________ ERROR collecting helloworld/sparkjob/hellospark_test.py ____________
+ImportError while importing test module '/private/var/folders/0t/dmh8ynt13pbc2y2stvb0by6c0000gn/T/pants-sandbox-aA4jsU/helloworld/sparkjob/hellospark_test.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/usr/local/Cellar/python@3.10/3.10.9/Frameworks/Python.framework/Versions/3.10/lib/python3.10/importlib/__init__.py:126: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+helloworld/sparkjob/hellospark_test.py:1: in <module>
+    from helloworld.sparkjob import hellospark
+helloworld/sparkjob/hellospark.py:5: in <module>
+    import pyarrow as pa
+E   ModuleNotFoundError: No module named 'pyarrow'
+- generated xml file: /private/var/folders/0t/dmh8ynt13pbc2y2stvb0by6c0000gn/T/pants-sandbox-aA4jsU/helloworld.sparkjob.hellospark_test.py.tests.xml -
+=========================== short test summary info ============================
+ERROR helloworld/sparkjob/hellospark_test.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.82s ===============================
+
+
+
+✕ helloworld/sparkjob/hellospark_test.py:tests failed in 1.65s.
+```
+
+
+## past issues
 ### Unable to run a spark job
 
 on running:
@@ -15,6 +74,28 @@ on running:
 `ModuleNotFoundError: No module named 'pandas'`
 
 `requirements.txt` contains dependency `pyspark[pandas_on_spark]==3.3.1` which has `pandas` and `pyarrow` as extra dependencies.
+
+#### soln
+There are 2 solns:
+
+1. Run using a `pex_binary` target, like this:
+```
+pex_binary(
+    name="main",
+    entry_point="hellospark.py",
+    execution_mode="venv"
+)
+```
+Thanks to @jsirois for his PR: https://github.com/adityav/pants-python-tryouts/pull/1
+From him, on slack:
+> When you need maximum compatibility or any form of control, running a python_sourcesowned file is not what you want. That must necessarily choose one set of options for all runs. Here the option you needed was to tell Pants to tell Pex to use a venv (See: https://www.pantsbuild.org/docs/reference-pex_binary#codeexecution_modecode) https://github.com/adityav/pants-python-tryouts/pull/1
+
+2. Darcy Shen in slack suggested adding env vars like [here](https://github.com/da-tubi/jupyter-notebook-best-practice/blob/26bbbe0919b8753550634205a4d97c84c2a80729/notebooks/helper.py#L6-L7)
+
+```
+    os.environ['PYSPARK_PYTHON'] = sys.executable
+    os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
+```
 
 ---
 # templated Readme below

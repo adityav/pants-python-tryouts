@@ -1,9 +1,12 @@
 from pyspark.sql import SparkSession
 import pandas as pd
-from pyspark.sql.functions import pandas_udf
+import os
+import sys
+import pyarrow as pa
 
 def hello_spark(spark: SparkSession):
     """Hello world spark!"""
+    from pyspark.sql.functions import pandas_udf
     
     @pandas_udf("double") # type: ignore
     def mean_udf(v: pd.Series) -> float:
@@ -17,4 +20,6 @@ def hello_spark(spark: SparkSession):
 
 
 if __name__ == "__main__":
+    os.environ['PYSPARK_PYTHON'] = sys.executable
+    os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
     hello_spark(SparkSession.builder.getOrCreate())
