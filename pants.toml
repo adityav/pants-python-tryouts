@@ -76,6 +76,6 @@ lockfile = "pytest.lock"
 env_vars = [
   "HOME",
   "USER",
+  "PATH",
 ]
-
 tools = ["sh", "sw_vers"]

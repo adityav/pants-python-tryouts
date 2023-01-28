@@ -9,10 +9,25 @@ the project aims to:
 3. Use Python Pulumi to setup EMR
 4. Write a driver to run the spark job on the EMR
 
+Reason to trying out Pants:
+
+- data engineers rarely get to control the environment their job runs in. Airflow / Spark / flink / Databricks etc have their own unique set of dependies which rarely play well together. Pants seems promising way of testing against multiple sets of deps
+- Pex files -> Unlike JAVA and their fat jars, Shipping python code is a nightmare. Pex should resolve that.
+- Data Integration testing is expensive, and mistakes are costly. Pants ability to figure out transitive dependencies should help figure out the blast radius of changed codebase and test it properly.
+
+
 ## Experience till now
+Pros:
+1. Lots of promise. exposing Transitive dependencies in code. Multiple python versions and resolutions. Tooling to automate a lot of repetitive tasks 
+
+Cons:
 1. Very rough. Almost every functionality requires something additional to tweak and configure to get it running.
+2. Understanding how pants works requires understanding pex. So you need to learn 2 tools.
+
 
 ## Current Issue
+None for now
+## past issues
 ### Issue 3: Unable to build docker image
 Testing out docker functionality. Getting error:
 
@@ -75,11 +90,8 @@ Still getting error:
 ------
 failed to solve with frontend dockerfile.v0: failed to create LLB definition: rpc error: code = Unknown desc = error getting credentials - err: exit status 1, out: ``
 ```
-
-
-
-
-## past issues
+#### Solution
+Needed to add `PATH` to the envvars. Not sure if its a good idea but it works.
 
 ### Issue 2: Using a constraints file causes `ModuleNotFoundError: No module named 'pyarrow'` when running tests.
 

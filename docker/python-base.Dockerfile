@@ -1,3 +1,5 @@
-FROM python:3.8
+FROM python:3.10-slim-bullseye
 
-RUN python3 -c "print('Hello world from docker')"
+ENTRYPOINT ["/bin/pex_binary"]
+
+COPY helloworld/pex_binary.pex /bin/pex_binary
