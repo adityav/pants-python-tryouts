@@ -8,6 +8,7 @@ def hello_spark(spark: SparkSession):
     """Hello world spark!"""
     from pyspark.sql.functions import pandas_udf
     
+    print(pa.array([1, 12, 17, 23, 28], type=pa.int8()))
     @pandas_udf("double") # type: ignore
     def mean_udf(v: pd.Series) -> float:
         return v.mean()
