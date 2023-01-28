@@ -2,7 +2,81 @@
 
 Repo to tryout pants for data engineering projects
 
+The aim of the project is to be able to build a pyspark application and run in EMR. Evaluating ease of use, reproducibility and maintainability.
+the project aims to:
+1. Create a spark application with unit tests
+2. Build an EMR compatible docker image 
+3. Use Python Pulumi to setup EMR
+4. Write a driver to run the spark job on the EMR
+
+## Experience till now
+1. Very rough. Almost every functionality requires something additional to tweak and configure to get it running.
+
 ## Current Issue
+### Issue 3: Unable to build docker image
+Testing out docker functionality. Getting error:
+
+```
+➜ ./pants package docker/python-base.Dockerfile
+20:57:28.42 [INFO] Completed: Building docker image python-base:latest
+20:57:28.42 [ERROR] 1 Exception encountered:
+
+  ProcessExecutionFailure: Process 'Building docker image python-base:latest' failed with exit code 1.
+stdout:
+
+stderr:
+#1 [internal] load build definition from python-base.Dockerfile
+#1 sha256:7d605ef9085d1cb9497fab80262d2c567c89ce8606d6d8085c8203dea93f2f3e
+#1 transferring dockerfile: 120B done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 sha256:6baa712fdaa295018c5351a30d849129d14273467051265450c688870fa780a9
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.8
+#3 sha256:edad251955f644c6004999f0af04035912392fa02db26821676452becbc715fb
+Failed to fire hook: while creating logrus local file hook: user: Current requires cgo or $USER, $HOME set in environment
+[2023-01-28T15:27:28.408721000Z][docker-credential-desktop][F] get system info: exec: "sw_vers": executable file not found in $PATH
+[goroutine 1 [running, locked to thread]:
+[common/pkg/system.init.0()
+[       common/pkg/system/os_info.go:32 +0x29d
+#3 ERROR: rpc error: code = Unknown desc = error getting credentials - err: exit status 1, out: ``
+------
+ > [internal] load metadata for docker.io/library/python:3.8:
+------
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: rpc error: code = Unknown desc = error getting credentials - err: exit status 1, out: ``
+```
+This seems to be due to hermetic build pants uses stopping key environment variables, executables to be not on path.
+
+Following the error, I added $USER, $HOME, and "sw_vers", "sh" to build environment.
+```
+[docker]
+env_vars = [
+  "HOME",
+  "USER",
+]
+
+tools = ["sh", "sw_vers"]
+```
+
+Still getting error:
+```
+#3 [internal] load metadata for docker.io/library/python:3.8
+#3 sha256:edad251955f644c6004999f0af04035912392fa02db26821676452becbc715fb
+[2023-01-28T15:31:23.094439000Z][docker-credential-desktop][F] get system info: exit status 127
+[goroutine 1 [running, locked to thread]:
+[common/pkg/system.init.0()
+[       common/pkg/system/os_info.go:32 +0x29d
+#3 ERROR: rpc error: code = Unknown desc = error getting credentials - err: exit status 1, out: ``
+------
+ > [internal] load metadata for docker.io/library/python:3.8:
+------
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: rpc error: code = Unknown desc = error getting credentials - err: exit status 1, out: ``
+```
+
+
 
 
 ## past issues
