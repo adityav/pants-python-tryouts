@@ -4,7 +4,10 @@ Repo to tryout pants for data engineering projects
 
 ## Current Issue
 
-Using a constraints file causes `ModuleNotFoundError: No module named 'pyarrow'` when running tests.
+
+## past issues
+
+### Issue 2: Using a constraints file causes `ModuleNotFoundError: No module named 'pyarrow'` when running tests.
 
 Without constraints file, hellospark_test works correctly.
 ```
@@ -61,9 +64,22 @@ ERROR helloworld/sparkjob/hellospark_test.py
 ✕ helloworld/sparkjob/hellospark_test.py:tests failed in 1.65s.
 ```
 
+#### Solution
+This was solved by making sure the pytest version was same as the one in constraints file. It can be done so by adding the following to `pants.toml`:
+```
+[pytest]
+version = "pytest==6.2.5"
+lockfile = "pytest.lock"
+```
+**Reason**
+According to John Sirois:
+> Aha, I (handwave) think that makes sense. We run tests by ~ PEX_PATH=requirements.pex PEX_EXTRA_SYS_PATH=src/ pytest.pexin a sandbox with all your tests and source under src/. The key thing being the pytest tool PEX and the 3rdparty requirements PEX are seperate. Spark does complicated things and if it loads pytest from the one PEX and not the other, I expect that affects what it can see in terms of other dependencies. By aligning the pytest versions, you don't force spark to look in the wrong PEX for other dependencies. Again - a handwave. There are lots of details there to pn down and prove.
 
-## past issues
-### Unable to run a spark job
+> In short, if that is in the ballpark, this is a Pants bug, and its unfortunately in the long and growing list of bugs due to performance hacks. The only reason we build a tool PEX for pytest separate from your requirements PEX is to save time, and its at the expense of ~correctness / uniformity / predictability.
+
+The takeaway is that if fmt/linting/testing tools are mentioned in the constraints file, ensure they are of same version as used by pex.
+
+### Issue 1: Unable to run a spark job
 
 on running:
 ```
